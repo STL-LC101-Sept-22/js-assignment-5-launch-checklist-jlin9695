@@ -59,6 +59,10 @@ function formSubmission(document, /*list,*/ pilot, copilot, fuelLevel, cargoLeve
     if(Number(fuelLevel) < 10000){
         console.log(Number(fuelLevel))
         div.style.visibility = "visible"
+        if(Number(cargoLevel) > 10000){
+            //div.style.visibility = "visible"
+            cargo.innerHTML = "Too much cargo to take off."
+        }
         fuel.innerHTML = "Not enough fuel for the journey."
         status.style.color = "red"
         return status.innerHTML = "Shuttle not ready for launch."
@@ -70,6 +74,7 @@ function formSubmission(document, /*list,*/ pilot, copilot, fuelLevel, cargoLeve
         return status.innerHTML = "Shuttle not ready for launch."
     }
     else{
+        div.style.visibility = "hidden"
         status.style.color = "green"
         return status.innerHTML = "Shuttle is ready for launch!"
     }
