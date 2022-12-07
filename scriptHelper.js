@@ -74,9 +74,11 @@ function formSubmission(document, /*list,*/ pilot, copilot, fuelLevel, cargoLeve
         return status.innerHTML = "Shuttle not ready for launch."
     }
     else{
+        fuel.innerHTML = "Fuel level high enough for launch"
+        cargo.innerHTML = "Cargo mass low enough for launch"
         div.style.visibility = "hidden"
         status.style.color = "green"
-        return status.innerHTML = "Shuttle is ready for launch!"
+        return status.innerHTML = "Shuttle is Ready for Launch"
     }
    
 }
