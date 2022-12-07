@@ -53,25 +53,25 @@ function formSubmission(document, /*list,*/ pilot, copilot, fuelLevel, cargoLeve
     const copilotElement = document.getElementById("copilotStatus");
     const fuel = document.getElementById("fuelStatus");
     const cargo = document.getElementById("cargoStatus")
-    pilotElement.innerHTML = `Pilot ${pilot}.`;
-    copilotElement.innerHTML = `CoPilot ${copilot}.`
+    pilotElement.innerHTML = `Pilot ${pilot} is ready for launch`;
+    copilotElement.innerHTML = `CoPilot ${copilot} is ready for launch`
     //console.log(fuelLevel)
     if(Number(fuelLevel) < 10000){
         console.log(Number(fuelLevel))
         div.style.visibility = "visible"
         if(Number(cargoLevel) > 10000){
             //div.style.visibility = "visible"
-            cargo.innerHTML = "Too much cargo to take off."
+            cargo.innerHTML = "Cargo mass too heavy for launch"
         }
-        fuel.innerHTML = "Not enough fuel for the journey."
+        fuel.innerHTML = "Fuel level too low for launch"
         status.style.color = "red"
-        return status.innerHTML = "Shuttle not ready for launch."
+        return status.innerHTML = "Shuttle Not Ready for Launch"
     }
     if(Number(cargoLevel) > 10000){
         div.style.visibility = "visible"
-        cargo.innerHTML = "Too much cargo to take off."
+        cargo.innerHTML = "Cargo mass too heavy for launch"
         status.style.color = "red"
-        return status.innerHTML = "Shuttle not ready for launch."
+        return status.innerHTML = "Shuttle Not Ready for Launch"
     }
     else{
         fuel.innerHTML = "Fuel level high enough for launch"
