@@ -14,22 +14,39 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
                 </ol>
                 <img src="">
    */
-  
+    const div = document.getElementById("missionTarget");
+    div.innerHTML += `
+    <h2>Mission Destination</h2>
+    <ol>
+        <li>Name: ${name}</li>
+        <li>Diameter: ${diameter}</li>
+        <li>Star: ${star}</li>
+        <li>Distance from Earth: ${distance}</li>
+        <li>Number of Moons: ${moons}</li>
+    </ol>
+    <img src="${imageUrl}" />` 
+    console.log(imageUrl)
 }
 
 function validateInput(testInput) {
-   if((testInput.value) === ''){
-    return "Empty"
-   }
-   if(typeof(testInput.value) === 'number'){
-    return "Is a Number"
-   }
-   else{
-    return "Not a number"
-   }
+    console.log(typeof(testInput.value))
+    if(testInput.value === null){
+        return "Empty"
+    }
+    if((testInput.value) === ''){
+        return "Empty"
+    }
+    if(isNaN(Number(testInput.value))){
+        //console.log(typeof(testInput.value))
+        return "Not a Number"
+    }
+    else{
+        return "Is a Number"
+    }
 }
 
-function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
+function formSubmission(document, /*list,*/ pilot, copilot, fuelLevel, cargoLevel) {
+    console.log("the function has been called.")
     const status = document.getElementById("launchStatus")
     const div = document.getElementById("faultyItems")
     const pilotElement = document.getElementById("pilotStatus");
@@ -38,21 +55,23 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     const cargo = document.getElementById("cargoStatus")
     pilotElement.innerHTML = `Pilot ${pilot}.`;
     copilotElement.innerHTML = `CoPilot ${copilot}.`
-    if(fuelLevel < 10000){
+    //console.log(fuelLevel)
+    if(Number(fuelLevel) < 10000){
+        console.log(Number(fuelLevel))
         div.style.visibility = "visible"
         fuel.innerHTML = "Not enough fuel for the journey."
         status.style.color = "red"
-        status.innerHTML = "Shuttle not ready for launch."
+        return status.innerHTML = "Shuttle not ready for launch."
     }
-    if(cargoLevel > 10000){
+    if(Number(cargoLevel) > 10000){
         div.style.visibility = "visible"
         cargo.innerHTML = "Too much cargo to take off."
         status.style.color = "red"
-        status.innerHTML = "Shuttle not ready for launch."
+        return status.innerHTML = "Shuttle not ready for launch."
     }
     else{
         status.style.color = "green"
-        status.innerHTML = "Shuttle is ready for launch!"
+        return status.innerHTML = "Shuttle is ready for launch!"
     }
    
 }
@@ -61,9 +80,10 @@ async function myFetch() {
     let planetsReturned;
 
     planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
-        response.json()
+        //console.log(response)
+        return response.json()
         });
-    console.log(planetsReturned)
+    //console.log(planetsReturned)
     return planetsReturned;
 }
 
